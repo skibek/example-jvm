@@ -1,4 +1,4 @@
-package org.skibinskik.exampleJvm.stream.model;
+package org.skibinskik.examplejvm.stream.model;
 
 public class Person {
     public String name;

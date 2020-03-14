@@ -1,4 +1,4 @@
-package org.skibinskik.exampleJvm.stream;
+package org.skibinskik.examplejvm.stream;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
@@ -159,7 +159,6 @@ public class StreamTest {
         Stream.generate(Math::random)
                 .limit(5)
                 .forEach(System.out::println);
-
 
         Stream<Integer> evenNumStream = Stream.iterate(2, i -> i * 2);
 

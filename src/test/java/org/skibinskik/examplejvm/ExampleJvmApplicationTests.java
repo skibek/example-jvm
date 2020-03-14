@@ -1,4 +1,4 @@
-package org.skibinskik.exampleJvm;
+package org.skibinskik.examplejvm;
 
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.core.util.StatusPrinter;

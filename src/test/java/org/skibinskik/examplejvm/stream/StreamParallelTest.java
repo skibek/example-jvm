@@ -1,8 +1,8 @@
-package org.skibinskik.exampleJvm.stream;
+package org.skibinskik.examplejvm.stream;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
-import org.skibinskik.exampleJvm.stream.model.Person;
+import org.skibinskik.examplejvm.stream.model.Person;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +11,7 @@ import java.util.UUID;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.TimeUnit;
 
-@Log4j2
+@Slf4j
 public class StreamParallelTest {
 
     private static List<String> values;
@@ -38,7 +38,7 @@ public class StreamParallelTest {
     void testParallelEasy() {
         long t0 = System.nanoTime();
         long count = values.stream().sorted().count();
-        log.info(count);
+        log.info(String.valueOf(count));
         long t1 = System.nanoTime();
         long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
         long micros = TimeUnit.NANOSECONDS.toMicros(t1 - t0);
@@ -48,7 +48,7 @@ public class StreamParallelTest {
 
         t0 = System.nanoTime();
         count = values.parallelStream().sorted().count();
-        log.info(count);
+        log.info(String.valueOf(count));
         t1 = System.nanoTime();
         millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
         micros = TimeUnit.NANOSECONDS.toMicros(t1 - t0);

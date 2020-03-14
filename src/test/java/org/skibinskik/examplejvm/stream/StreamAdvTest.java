@@ -1,9 +1,9 @@
-package org.skibinskik.exampleJvm.stream;
+package org.skibinskik.examplejvm.stream;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.skibinskik.exampleJvm.stream.model.Person;
+import org.skibinskik.examplejvm.stream.model.Person;
 
 import java.util.*;
 import java.util.stream.Collector;
@@ -53,8 +53,7 @@ public class StreamAdvTest {
         log.info(String.valueOf(averageAge));     // 19.0
 
 
-        IntSummaryStatistics ageSummary =
-                persons
+        IntSummaryStatistics ageSummary = persons
                         .stream()
                         .collect(Collectors.summarizingInt(p -> p.age));
         log.info(String.valueOf(ageSummary));

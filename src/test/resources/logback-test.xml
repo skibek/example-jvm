@@ -28,7 +28,7 @@ LogBack - http://logback.qos.ch/manual/appenders.html
                 2020-03-14 14:41:03,260 [main] INFO  o.skibinskik.exampleJvm.StreamTest loggerTest - test
 
                 %d{yyyy HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n
-                2020 14:29:00.363 [main] INFO  org.skibinskik.exampleJvm.stream.StreamTest - test
+                2020 14:29:00.363 [main] INFO  org.skibinskik.examplejvm.stream.StreamTest - test
                 -->
                 <!--
                 %-4relative [%thread] %-5level %logger{35} - %msg %n

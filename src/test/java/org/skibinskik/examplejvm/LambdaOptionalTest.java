@@ -1,11 +1,11 @@
-package org.skibinskik.exampleJvm;
+package org.skibinskik.examplejvm;
 
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 
 import java.util.*;
 
-@Log4j2
+@Slf4j
 public class LambdaOptionalTest {
 
     private static List<String> names;
