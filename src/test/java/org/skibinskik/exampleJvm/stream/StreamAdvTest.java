@@ -2,17 +2,12 @@ package org.skibinskik.exampleJvm.stream;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.skibinskik.exampleJvm.stream.model.Person;
 
 import java.util.*;
-import java.util.function.Supplier;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /**
  * https://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/

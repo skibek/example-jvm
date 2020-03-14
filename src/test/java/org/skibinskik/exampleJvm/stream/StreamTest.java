@@ -1,14 +1,11 @@
 package org.skibinskik.exampleJvm.stream;
 
-import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -46,7 +43,9 @@ public class StreamTest {
                 .filter((s) -> s.startsWith("a"))
                 .map(String::toUpperCase)
                 //.collect(List)
-                .forEach(System.out::println);
+                .peek(System.out::println)
+                .collect(Collectors.toList());
+                //.forEach(System.out::println);
         //assertEquals(2, calculator.add(1, 1));
     }
 
@@ -96,8 +95,9 @@ public class StreamTest {
                 .findFirst()
                 .ifPresent(System.out::println);  // a1
 
-        IntStream.range(1, 4)
-                .forEach(System.out::println);
+        int i = IntStream.range(1, 4)
+                .findFirst()
+                .orElse(0);;
 
         Arrays.stream(new int[] {1, 2, 3})
                 .map(n -> 2 * n + 1)
@@ -127,7 +127,7 @@ public class StreamTest {
     }
 
     @Test
-    void testDisplayBadReaordering() {
+    void testDisplayBadReordering() {
         Stream.of("d2", "a2", "b1", "b3", "c")
                 .sorted((s1, s2) -> {
                     System.out.printf("sort: %s; %s\n", s1, s2);
@@ -142,6 +142,32 @@ public class StreamTest {
                     return s.toUpperCase();
                 })
                 .forEach(s -> System.out.println("forEach: " + s));
+    }
+
+    @Test
+    public void whenStreamPartition_thenGetMap() {
+        List<Integer> intList = Arrays.asList(2, 4, 5, 6, 8);
+        Map<Boolean, List<Integer>> isEven = intList.stream().collect(
+                Collectors.partitioningBy(i -> i % 2 == 0));
+
+        assertEquals(isEven.get(true).size(), 4);
+        assertEquals(isEven.get(false).size(), 1);
+    }
+
+    @Test
+    public void whenGenerateStream_thenGetInfiniteStream() {
+        Stream.generate(Math::random)
+                .limit(5)
+                .forEach(System.out::println);
+
+
+        Stream<Integer> evenNumStream = Stream.iterate(2, i -> i * 2);
+
+        List<Integer> collect = evenNumStream
+                .limit(5)
+                .collect(Collectors.toList());
+
+        assertEquals(collect, Arrays.asList(2, 4, 8, 16, 32));
     }
 
 }
