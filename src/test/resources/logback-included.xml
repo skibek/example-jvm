@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<included>
+    <contextName>testApplication</contextName>
+    <appender name="DEVELOPMENT" class="ch.qos.logback.core.rolling.RollingFileAppender"> <!--This will be an appender, which logs into file-->
+        <file>${server.log.dir}/apps/${CONTEXT_NAME}-development.log</file> <!--The file name-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${server.log.dir}/apps/${CONTEXT_NAME}-development.log-%d{yyyy-MM-dd}.%i</fileNamePattern>
+            <maxHistory>3</maxHistory>
+            <maxFileSize>50MB</maxFileSize>
+            <totalSizeCap>200MB</totalSizeCap>
+        </rollingPolicy> <!--configuration for the rolling files, itt will create a new file when the current size hits the 50MB. It will preserve only 3 files historically.-->
+        <encoder>
+            <pattern>%d{"yyyy-MM-dd'T'HH:mm:ss.SSSXXX"} [${HOSTNAME}][${server.name}][DEBUG][%contextName][%X{UserName:--}][%class][%method][thread=%thread][requestId:%X{RequestId:--}][severity:%level]%msg%n</pattern>
+            <!--Information about the datas what the log should store.-->
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> <!--A basic ConsoleAppender-->
+        <encoder>
+            <pattern>%-5relative %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO"> <!--log level setting-->
+        <appender-ref ref="DEVELOPMENT"/> <!--Appender for that level-->
+    </root>
+
+</included>
