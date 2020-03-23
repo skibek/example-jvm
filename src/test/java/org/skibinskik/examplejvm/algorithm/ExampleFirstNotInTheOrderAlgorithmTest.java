@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -14,11 +15,12 @@ import java.util.stream.Stream;
  * @author x,y,z
  * @since 2020.03.14
  * @version 1.0
- * @hidden https://medium.com/@rhamedy/a-short-summary-of-java-coding-best-practices-31283d0167d3
+ * @hidden
  */
 @Slf4j
-public class ExampleAlgorithmTest {
+public class ExampleFirstNotInTheOrderAlgorithmTest {
 
+    //Search for first element not in right order - from 1 to max
     Integer[] array = {8,1,2,2,3,6,4};  //should be 5
 
     @BeforeAll
@@ -37,6 +39,7 @@ public class ExampleAlgorithmTest {
 
         int counter = 1;
         for (Integer integer : list) {
+            log.info("Step - integer=" + integer + " counter=" + counter);
             if (integer == counter) {
                 counter++;
             } else {
@@ -53,7 +56,31 @@ public class ExampleAlgorithmTest {
         }
         */
 
-        log.info("Znalezione = " + counter);
+        log.info("Found = " + counter);
+    }
+
+    //https://howtodoinjava.com/puzzles/find-missing-number-from-series/
+    @Test
+    void testRes2() {
+        //10 is missing
+        //int[] numbers = {1,2,3,4,5,6,7,8,9, 11,12};
+        int[] numbers = {1,2,3,4,6};
+
+        int n = 6; // max from arr
+        //int n = 12;
+        int idealSum = (n * (n + 1)) / 2;
+
+        //calculateSum
+        /*
+        int sum = 0;
+        for (int n : numbers) {
+            sum += n;
+        }
+        */
+        int sum = Arrays.stream(numbers).sum();
+
+        int missingNumber = idealSum - sum;
+        log.info(" " + missingNumber);
     }
 
 }
